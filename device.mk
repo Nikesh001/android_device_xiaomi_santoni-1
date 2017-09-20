@@ -85,6 +85,11 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl
+    
+# Consumerir
+PRODUCT_PACKAGES += \		  
+    android.hardware.ir@1.0-impl \
+    consumerir.msm8937
 
 # Audio configuration
 PRODUCT_COPY_FILES += \
