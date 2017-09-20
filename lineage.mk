@@ -17,7 +17,7 @@
 $(call inherit-product, device/xiaomi/santoni/full_santoni.mk)
 
 # Inherit some common GlazeOS stuff.
-$(call inherit-product, vendor/glaze/config/common_full_phone.mk)
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 PRODUCT_NAME := glaze_santoni
 BOARD_VENDOR := Xiaomi
