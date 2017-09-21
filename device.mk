@@ -100,6 +100,10 @@ PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-impl \
     consumerir.msm8937
 
+# Fingerprint
+PRODUCT_PACKAGES += \
+    fingerprint.msm8937
+
 # Audio configuration
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
