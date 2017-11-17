@@ -32,4 +32,10 @@
          For example, a device support pulsating, RGB notification and
          battery LEDs would set this config to 11. -->
     <integer name="config_deviceLightCapabilities">43</integer>
+
+    <!-- Default wi-fi hotspot ssid -->
+    <string name="config_wifiHotSpotSsid">Redmi 4X</string>
+    <!-- Default wi-fi direct name -->
+    <string name="config_wifiDirectName">Redmi 4X</string>
+
 </resources>
