@@ -1498,10 +1498,10 @@ case "$target" in
 
                 # HMP Task packing settings
                 echo 20 > /proc/sys/kernel/sched_small_task
-                echo 30 > /sys/devices/system/cpu/cpu0/sched_mostly_idle_load
-                echo 30 > /sys/devices/system/cpu/cpu1/sched_mostly_idle_load
-                echo 30 > /sys/devices/system/cpu/cpu2/sched_mostly_idle_load
-                echo 30 > /sys/devices/system/cpu/cpu3/sched_mostly_idle_load
+                echo 35 > /sys/devices/system/cpu/cpu0/sched_mostly_idle_load
+                echo 35 > /sys/devices/system/cpu/cpu1/sched_mostly_idle_load
+                echo 35 > /sys/devices/system/cpu/cpu2/sched_mostly_idle_load
+                echo 35 > /sys/devices/system/cpu/cpu3/sched_mostly_idle_load
                 echo 30 > /sys/devices/system/cpu/cpu4/sched_mostly_idle_load
                 echo 30 > /sys/devices/system/cpu/cpu5/sched_mostly_idle_load
                 echo 30 > /sys/devices/system/cpu/cpu6/sched_mostly_idle_load
@@ -1517,13 +1517,13 @@ case "$target" in
                 echo 3 > /sys/devices/system/cpu/cpu7/sched_mostly_idle_nr_run
 
                 echo 0 > /sys/devices/system/cpu/cpu0/sched_prefer_idle
-                echo 0 > /sys/devices/system/cpu/cpu1/sched_prefer_idle
+                echo 1 > /sys/devices/system/cpu/cpu1/sched_prefer_idle
                 echo 0 > /sys/devices/system/cpu/cpu2/sched_prefer_idle
-                echo 0 > /sys/devices/system/cpu/cpu3/sched_prefer_idle
+                echo 1 > /sys/devices/system/cpu/cpu3/sched_prefer_idle
                 echo 0 > /sys/devices/system/cpu/cpu4/sched_prefer_idle
-                echo 0 > /sys/devices/system/cpu/cpu5/sched_prefer_idle
+                echo 1 > /sys/devices/system/cpu/cpu5/sched_prefer_idle
                 echo 0 > /sys/devices/system/cpu/cpu6/sched_prefer_idle
-                echo 0 > /sys/devices/system/cpu/cpu7/sched_prefer_idle
+                echo 1 > /sys/devices/system/cpu/cpu7/sched_prefer_idle
 
                 for devfreq_gov in /sys/class/devfreq/qcom,mincpubw*/governor
                 do
@@ -1545,7 +1545,7 @@ case "$target" in
 
                 for gpu_bimc_io_percent in /sys/class/devfreq/soc:qcom,gpubw/bw_hwmon/io_percent
                 do
-                    echo 40 > $gpu_bimc_io_percent
+                    echo 45 > $gpu_bimc_io_percent
                 done
 
                 # disable thermal core_control to update interactive gov and core_ctl settings
@@ -1568,27 +1568,27 @@ case "$target" in
                 echo 1 > /sys/devices/system/cpu/cpu4/online
                 echo "interactive" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
                 echo 39000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
-                echo 90 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
+                echo 96 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
                 echo 20000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
                 echo 768000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
                 echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
-                echo "1 768000:90" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
+                echo "1 768000:96" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
                 echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
                 echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor
                 echo 768000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 
-                # Disable L2-GDHS low power modes
-                echo N > /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/idle_enabled
-                echo N > /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/suspend_enabled
-                echo N > /sys/module/lpm_levels/system/perf/perf-l2-gdhs/idle_enabled
-                echo N > /sys/module/lpm_levels/system/perf/perf-l2-gdhs/suspend_enabled
+                # Enable L2-GDHS low power modes
+                echo Y > /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/idle_enabled
+                echo Y > /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/suspend_enabled
+                echo Y > /sys/module/lpm_levels/system/perf/perf-l2-gdhs/idle_enabled
+                echo Y > /sys/module/lpm_levels/system/perf/perf-l2-gdhs/suspend_enabled
 
-                # Disable E3 low power modes
-                echo N > /sys/module/lpm_levels/system/system-pc/idle_enabled
+                # Enable E3 low power modes
+                echo Y > /sys/module/lpm_levels/system/system-pc/idle_enabled
 
-                # Disable CCI WFI and CCI RETENTION Low power modes
-                echo N > /sys/module/lpm_levels/system/system-wfi/idle_enabled
-                echo N > /sys/module/lpm_levels/system/system-ret/idle_enabled
+                # Enable CCI WFI and CCI RETENTION Low power modes
+                echo Y > /sys/module/lpm_levels/system/system-wfi/idle_enabled
+                echo Y > /sys/module/lpm_levels/system/system-ret/idle_enabled
 
                 # Bring up all cores online
                 echo 1 > /sys/devices/system/cpu/cpu1/online
@@ -1598,18 +1598,18 @@ case "$target" in
                 echo 1 > /sys/devices/system/cpu/cpu5/online
                 echo 1 > /sys/devices/system/cpu/cpu6/online
                 echo 1 > /sys/devices/system/cpu/cpu7/online
-                # Disable L2-GDHS low power modes
-                echo N > /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/idle_enabled
-                echo N > /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/suspend_enabled
-                echo N > /sys/module/lpm_levels/system/perf/perf-l2-gdhs/idle_enabled
-                echo N > /sys/module/lpm_levels/system/perf/perf-l2-gdhs/suspend_enabled
+                # Enable L2-GDHS low power modes
+                echo Y > /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/idle_enabled
+                echo Y > /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/suspend_enabled
+                echo Y > /sys/module/lpm_levels/system/perf/perf-l2-gdhs/idle_enabled
+                echo Y > /sys/module/lpm_levels/system/perf/perf-l2-gdhs/suspend_enabled
 
                 # Enable low power modes
                 echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
 
                 # HMP scheduler (big.Little cluster related) settings
-                echo 93 > /proc/sys/kernel/sched_upmigrate
-                echo 83 > /proc/sys/kernel/sched_downmigrate
+                echo 97 > /proc/sys/kernel/sched_upmigrate
+                echo 84 > /proc/sys/kernel/sched_downmigrate
 
                 # Enable sched guided freq control
                 echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
@@ -1621,12 +1621,20 @@ case "$target" in
 
                 # Enable core control
                 insmod /system/lib/modules/core_ctl.ko
-                echo 2 > /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
+                echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
                 echo 4 > /sys/devices/system/cpu/cpu0/core_ctl/max_cpus
-                echo 68 > /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres
-                echo 40 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
-                echo 100 > /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms
+                echo 74 > /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres
+                echo 42 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
+                echo 92 > /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms
                 echo 1 > /sys/devices/system/cpu/cpu0/core_ctl/is_big_cluster
+
+		#For little cluster
+		echo 2 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
+                echo 4 > /sys/devices/system/cpu/cpu4/core_ctl/max_cpus
+                echo 70 > /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres
+                echo 35 > /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres
+                echo 75 > /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms
+                echo 0 > /sys/devices/system/cpu/cpu4/core_ctl/is_big_cluster
 
                 # re-enable thermal core_control
                 echo 1 > /sys/module/msm_thermal/core_control/enabled
@@ -2394,3 +2402,79 @@ case "$console_config" in
         echo "Enable console config to $console_config"
         ;;
 esac
+
+#Extra tweaks for redmi 4X
+#DAC High Performance mode and impedance detecion enable
+chmod 666 /sys/module/snd_soc_wcd9330/parameters/high_perf_mode
+echo 1 > /sys/module/snd_soc_wcd9330/parameters/high_perf_mode
+chmod 444 /sys/module/snd_soc_wcd9330/parameters/high_perf_mode
+chmod 666 /sys/module/snd_soc_wcd9xxx/parameters/impedance_detect_en
+echo 1 > /sys/module/snd_soc_wcd9xxx/parameters/impedance_detect_en
+chmod 444 /sys/module/snd_soc_wcd9xxx/parameters/impedance_detect_en
+chmod 666 /sys/module/snd_soc_wcd_mbhc/parameters/det_extn_cable_en
+echo 1 > /sys/module/snd_soc_wcd_mbhc/parameters/det_extn_cable_en
+chmod 444 /sys/module/snd_soc_wcd_mbhc/parameters/det_extn_cable_en
+
+#Quick Charge 3.0 Specific settings:
+#Battery Maximum charging current delivered to battery
+echo 2500000 > /sys/class/power_supply/battery/constant_charge_current_max
+
+#Maximum USB_DCP USB_HVDCP and USB_HVDCP3 currents
+echo 2200 > /sys/module/qpnp_smbcharger/parameters/default_dcp_icl_ma
+echo 1800 > /sys/module/qpnp_smbcharger/parameters/default_hvdcp_icl_ma
+echo 3100 > /sys/module/qpnp_smbcharger/parameters/default_hvdcp3_icl_ma
+echo 1800 > /sys/module/dwc3_msm/parameters/hvdcp_max_current
+echo 2200 > /sys/module/dwc3_msm/parameters/dcp_max_current
+
+#USB Phy settings
+echo 2200 > /sys/module/phy_msm_usb/parameters/dcp_max_current
+echo 1800 > /sys/module/phy_msm_usb/parameters/hvdcp_max_current
+
+#Battery temperature control
+chown system:system /sys/class/power_supply/bms/temp_warm
+chmod 666 /sys/class/power_supply/bms/temp_warm
+echo 500 > /sys/class/power_supply/bms/temp_warm
+chmod 644 /sys/class/power_supply/bms/temp_warm
+
+#GPU PowerLevel
+chown system:system /sys/class/kgsl/kgsl-3d0/default_pwrlevel
+chmod 666 /sys/class/kgsl/kgsl-3d0/default_pwrlevel
+echo "9" > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
+chmod 444 /sys/class/kgsl/kgsl-3d0/default_pwrlevel
+
+#Extra system tweaks
+#Power Savings
+echo 3 > /proc/sys/vm/page-cluster
+echo 3000 > /proc/sys/vm/dirty_expire_centisecs
+echo 500 > /proc/sys/vm/dirty_writeback_centisecs
+echo "5" > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
+echo "5120" > /proc/sys/vm/min_free_kbytes;
+
+# Minfree Values
+echo "15728,23592,39321,70778,78643,86507" > /sys/module/lowmemorykiller/parameters/minfree;
+
+#CPU Affinity
+echo "4" > /sys/block/mmcblk0/queue/rq_affinity
+echo "2" > /sys/block/mmcblk1/queue/rq_affinity
+
+#Cache read tweak
+echo "1024" > /sys/block/mmcblk0/queue/read_ahead_kb
+echo "2048" > /sys/block/mmcblk1/queue/read_ahead_kb
+
+#Enable power efficient workqueues
+chown system:system /sys/module/workqueue/parameters/power_efficient
+chmod 666 /sys/module/workqueue/parameters/power_efficient
+echo Y > /sys/module/workqueue/parameters/power_efficient
+chmod 444 /sys/module/workqueue/parameters/power_efficient
+
+#Tweak MSM thermal to 55ºC
+chown system:system /sys/module/msm_thermal/parameters/temp_threshold
+chmod 666 /sys/module/msm_thermal/parameters/temp_threshold
+echo 55 > /sys/module/msm_thermal/parameters/temp_threshold
+chmod 444 /sys/module/msm_thermal/parameters/temp_threshold
+
+#Enable MSM thermal temperature control kernel module
+chown system:system /sys/module/msm_thermal/parameters/enabled
+chmod 666 /sys/module/msm_thermal/parameters/enabled
+echo Y > /sys/module/msm_thermal/parameters/enabled
+chmod 444 /sys/module/msm_thermal/parameters/enabled

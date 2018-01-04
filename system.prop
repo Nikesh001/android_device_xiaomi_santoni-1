@@ -2,41 +2,184 @@
 # system.prop for santoni
 #
 
-# Audio
+# Fluence props
+ro.qc.sdk.audio.ssr=true
+persist.audio.ssr.3mic=false
+persist.audio.ssr.2mic=true
+ro.qc.sdk.audio.fluencetype=fluencepro
+persist.audio.fluence.mode=broadside
+persist.audio.dualmic.config=broadside
+persist.audio.handset.mic=digital
+persist.audio.headset.mic=analog
+persist.audio.fluence.voicecall=true
+persist.audio.fluence.voicerec=false
+persist.audio.fluence.voicecomm=true
+persist.audio.fluence.speaker=true
+persist.audio.fluence.spk.mono=true
+persist.audio.fluence.audiorec=false
+persist.audio.voicecall.mic=0
+persist.audio.spkcall_2mic=OFF
+persist.audio.handset_rx_type=DEFAULT
+
+#Audio General Configs
+persist.speaker.prot.enable=true
+persist.spkr.cal.duration=5
+alsa.mixer.playback.master=DAC1
+persist.audio.aanc.enable=true
+persist.audio.lowlatency.rec=true
 voice.playback.conc.disabled=true
 voice.record.conc.disabled=false
 voice.voip.conc.disabled=true
 voice.conc.fallbackpath=deep-buffer
-audio.parser.ip.buffer.size=0
-audio_hal.period_size=192
-ro.qc.sdk.audio.ssr=false
-ro.qc.sdk.audio.fluencetype=fluence
-persist.audio.fluence.voicecall=true
-persist.audio.fluence.voicerec=true
-persist.audio.fluence.speaker=true
-audio.offload.disable = true
-tunnel.audio.encode = false
-audio.offload.buffer.size.kb=64
+flac.sw.decoder.24bit.support=true
+audio_hal.period_size=784
+audio.parser.ip.buffer.size=512640
+audio.playback.mch.downsample=false
+
+#Offload audio
+audio.offload.buffer.size.kb=2256
 audio.offload.min.duration.secs=30
-audio.offload.video=true
+audio.offload.pcm.enable=true
+audio.offload.track.enabled=true
+audio.offload.16bit.enable=true
+audio.offload.24bit.enable=true
 audio.offload.pcm.16bit.enable=true
 audio.offload.pcm.24bit.enable=true
-audio.offload.track.enable=true
+audio.offload.disable=false
+audio.offload.enable=true
+audio.offload.gapless.enabled=true
+audio.offload.multiple.enabled=true
+audio.offload.passthrough=true
+av.offload.enable=true
+av.streaming.offload.enable=true
+audio.offload.multiaac.enable=true
+
+#Low Power Audio and tunneling disable for HiFi processing 
+lpa.decode=false
+lpa.use-stagefright=false
+tunnel.decode=false
+tunnel.audiovideo.decode=false
+tunnel.audio.decode=false
+tunnel.audio.encode=false
+tunnel.decode=false
+tunnel.encode=false
+tunnel.multiple=false
+
+#Deep_buffer
 audio.deep_buffer.media=true
+
+#Audio extra
 audio.playback.mch.downsample=true
 use.voice.path.for.pcm.voip=true
 use.qti.sw.alac.decoder=true
 use.qti.sw.ape.decoder=true
-audio.offload.gapless.enabled=true
-audio.offload.multiple.enabled=false
-audio.safx.pbe.enabled=true
-audio.pp.asphere.enabled=false
-audio.dolby.ds2.enabled=true
 af.fast_track_multiplier=2
-persist.speaker.prot.enable=false
-audio.offload.multiaac.enable=true
-audio.dolby.ds2.hardbypass=true
 flac.sw.decoder.24bit.support=true
+
+#Dolby
+audio.dolby.dax.enabled=true
+audio.dolby.dax.hardbypass=true
+audio.dolby.ds1.enabled=true
+audio.dolby.ds1.hardbypass=true
+audio.dolby.ds2.enabled=true
+audio.dolby.ds2.hardbypass=true
+ro.config.hw_dolby=true
+audio.ds1.metainfo.key=273
+dmid=-1286820014
+dolby.audio.sink.info=speaker
+dolby.monospeaker=true
+
+#Extra audio optimizations
+ro.config.vc_call_vol_steps=20
+ro.config.media_vol_steps=24
+persist.audio.speaker.location=low
+persist.audio.hp=true
+audio.safx.pbe.enabled=true
+audio.pp.asphere.enabled=true
+mm.enable.sec.smoothstreaming=true
+persist.mm.enable.prefetch=true
+persist.audio.aov=ON
+ro.ril.enable.amr.wideband=1
+af.resampler.quality=255
+persist.af.resampler.quality=255
+af.resample=48000
+persist.af.resample=48000
+ro.audio.samplerate=48000
+persist.audio.samplerate=48000
+ro.audio.pcm.samplerate=48000
+persist.audio.native.44.1kHz=true
+persist.audio.native.48kHz=true
+pcm.channels=8
+persist.audio.SupportHTCHWAEC=1
+clock.allow_streaming_errors=false
+defaults.pcm.rate_converter=speexrate_best
+defaults.pcm.rate_converter=samplerate_best
+persist.audio.vr.enable=true
+persist.audio.voice.clarity=ON
+persist.audio.hifi_dac=ON
+hpx_send_params=1
+ro.config.hw_dts=true
+ro.config.hpx_support=true
+media.aac_51_output_enabled=true
+persist.audio.ns.enabled=ON
+persist.audio.ssr.3mic=false
+persist.bt.enableAptXHD=true
+persist.bt.enableAptX=true
+bt.max.hfpclient.connections=1
+persist.bt.a2dp.aac_disable=true
+persist.bt.a2dp.aptx_disable=false
+persist.bt.a2dp.aptx_hd_disable=false
+persist.bt.a2dp_offload_cap=sbc-aptx-aptxhd-aac
+audio.legacy.postproc=true
+mpq.audio.decode=true
+persist.audio.FFSP.enable=true 
+audio.nat.codec.enabled=true 
+persist.audio.hifi.int_codec=true 
+persist.audio.hifi.volume=1
+use.dts_eagle=true
+persist.headset.anc.type=feedback
+
+#Power Saving
+ro.config.hw_power_saving=true
+persist.radio.add_power_save=1
+wifi.supplicant_scan_interval=300
+profiler.force_disable_ulog=true
+profiler.force_disable_err_rpt=true
+profiler.force_disable_err_rpt=1
+profiler.force_disable_ulog=1
+ro.ril.disable.power.collapse=0
+ro.ril.power_collapse=1
+perstist.power.usetwilightadj=true
+
+#GPU Tweaks
+ro.qc.sdk.camera.facialproc=true
+persist.sys.use_16bpp_alpha=1
+hwui.enable_vsync=false
+hwui.disable_vsync=true
+ro.config.disable.hw_accel=false
+ro.max.fling_velocity=14000
+ro.min.fling_velocity=8000
+hw3d.force=1
+debug.qc.hardware=true
+com.qc.hardware=true
+
+#WiFi Calling
+persist.data.iwlan.enable=true
+persist.dbg.wfc_avail_ovr=1
+
+# Data Power Manager (DPM)
+persist.env.fastdorm.enabled=true
+persist.sys.dpmd.nsrm=3
+
+# Dex2oat limits
+dalvik.vm.dex2oat-flags=--no-watch-dog
+dalvik.vm.boot-dex2oat-threads=8
+dalvik.vm.dex2oat-threads=4
+dalvik.vm.image-dex2oat-threads=2
+dalvik.vm.bg-dex2oat-threads=2
+
+#CPU Configs
+ro.core_ctl_min_cpu=0
 
 # Bluetooth
 bluetooth.hfp.client=1
@@ -54,6 +197,14 @@ persist.camera.imglib.cac3=2
 camera.lowpower.record.enable=1
 persist.camera.gyro.disable=0
 camera.hal1.packagelist=com.skype.raider,com.google.android.talk,com.whatsapp,com.google.android.GoogleCamera
+persist.camera.thermal.mode=fps
+
+#Internet
+ro.ril.enable.dtm=1
+net.rmnet0.dns1=208.67.220.220
+net.rmnet0.dns2=208.67.222.222
+net.dns1=208.67.220.220
+net.dns2=208.67.222.222
 
 # Cne
 persist.cne.feature=1
@@ -112,6 +263,13 @@ vidc.dec.downscalar_width=1920
 vidc.dec.downscalar_height=1088
 vidc.disable.split.mode=1
 vidc.enc.disable.pq=true
+media.stagefright.enable-http=true
+media.stagefright.enable-player=true
+media.stagefright.enable-meta=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+media.stagefright.enable-scan=true
+media.stagefright.enable-record=true
 
 # Perf
 ro.vendor.gt_library=libqti-gt.so
