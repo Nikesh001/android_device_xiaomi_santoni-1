@@ -17,7 +17,7 @@
 $(call inherit-product, device/xiaomi/santoni/full_santoni.mk)
 
 # Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/nitrogen/products/common.mk)
+$(call inherit-product, vendor/aosip/config/common_full_phone.mk)
 
 PRODUCT_DEVICE := santoni
 PRODUCT_BRAND := Xiaomi
