@@ -19,12 +19,8 @@ $(call inherit-product, device/xiaomi/santoni/full_santoni.mk)
 # Inherit some common LineageOS stuff.
 $(call inherit-product, vendor/aosip/config/common_full_phone.mk)
 
-PRODUCT_DEVICE := santoni
-PRODUCT_BRAND := Xiaomi
-PRODUCT_MODEL := Redmi 4X
 PRODUCT_NAME := aosip_santoni
 BOARD_VENDOR := Xiaomi
-PRODUCT_MANUFACTURER := Xiaomi
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
